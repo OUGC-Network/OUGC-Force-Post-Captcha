@@ -69,14 +69,22 @@ function newthread_end()
 		{
 			$ougc_post_captcha->build_captcha();
 		}
-		elseif(in_array($ougc_post_captcha->type, array(4, 5)))
+		elseif(in_array($ougc_post_captcha->type, array(4, 5, 8)))
 		{
 			$ougc_post_captcha->build_recaptcha();
 		}
+		elseif(in_array($ougc_post_captcha->type, array(6, 7)))
+		{
+			$ougc_post_captcha->build_hcaptcha();
+		}
 	}
-	else if($correct && (in_array($ougc_post_captcha->type, array(4, 5))))
+	else if($correct && (in_array($ougc_post_captcha->type, array(4, 5, 8))))
 	{
 		$ougc_post_captcha->build_recaptcha();
+	}
+	else if($correct && (in_array($ougc_post_captcha->type, array(6, 7))))
+	{
+		$ougc_post_captcha->build_hcaptcha();
 	}
 
 	if($ougc_post_captcha->html)
@@ -149,7 +157,7 @@ function datahandler_post_validate_thread(&$dh)
 		$data = '';
 		$data .= "<captcha>$imagehash";
 
-		if($hide_captcha)
+		if($ougc_hide_captcha)
 		{
 			$data .= "|$randomstr";
 		}
