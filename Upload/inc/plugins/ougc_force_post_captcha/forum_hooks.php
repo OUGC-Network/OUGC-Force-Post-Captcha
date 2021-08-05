@@ -229,3 +229,50 @@ function showthread_end()
 
 	$quickreply = str_replace('<!--OUGC_FORCE_POST_CAPTCHA-->', $captcha, $quickreply);
 }
+
+function contact_do_start()
+{
+	global $mybb;
+
+	if(
+		$mybb->settings['ougc_force_post_captcha_contact'] &&
+		$mybb->settings['captchaimage'] &&
+		$mybb->user['uid'] &&
+		is_member($mybb->settings['ougc_force_post_captcha_groups'])
+	)
+	{
+		global $captcha, $errors;
+
+		$captcha = new \captcha;
+
+		if($captcha->validate_captcha() == false)
+		{
+			foreach($captcha->get_errors() as $error)
+			{
+				$errors[] = $error;
+			}
+		}
+	}
+}
+
+function contact_end()
+{
+	global $mybb;
+	global $captcha;
+
+	if(
+		$mybb->settings['ougc_force_post_captcha_contact'] &&
+		!$captcha &&
+		is_member($mybb->settings['ougc_force_post_captcha_groups'])
+	)
+	{
+		global $post_captcha;
+
+		$post_captcha = new \captcha(true, 'post_captcha');;
+
+		if($post_captcha->html)
+		{
+			$captcha = $post_captcha->html;
+		}
+	}
+}

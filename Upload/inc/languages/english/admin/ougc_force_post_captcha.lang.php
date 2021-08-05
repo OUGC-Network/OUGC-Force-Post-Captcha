@@ -36,5 +36,8 @@ $l = [
 	'setting_ougc_force_post_captcha_forums_desc' => 'Select in which forums are these groups forced to fill a captcha while posting.',
 	'setting_ougc_force_post_captcha_firstpost' => 'First Post Only',
 	'setting_ougc_force_post_captcha_firstpost_desc' => 'Enable this setting to require a captcha only when creating threads (first post).',
+	'setting_ougc_force_post_captcha_contact' => 'Contct Page',
+	'setting_ougc_force_post_captcha_contact_desc' => 'Enable this setting to require a captcha when using the contact page.',
+
 	'ougc_force_post_captcha_pluginlibrary' => 'This plugin requires <a href="{1}">PluginLibrary</a> version {2} or later to be uploaded to your forum.'
 ];

@@ -79,6 +79,12 @@ function _activate()
 			'optionscode' => 'yesno',
 			'value' =>	1,
 		],
+		'contact' => [
+			'title' => $lang->setting_ougc_force_post_captcha_contact,
+			'description' => $lang->setting_ougc_force_post_captcha_contact_desc,
+			'optionscode' => 'yesno',
+			'value' =>	1,
+		],
 	]);
 
 	// Insert/update version into cache
