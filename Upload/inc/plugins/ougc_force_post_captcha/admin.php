@@ -28,8 +28,6 @@
 
 namespace OUGCForcePostCaptcha\Admin;
 
-use Coingecko\Coingecko;
-
 use function OUGCForcePostCaptcha\Core\load_language;
 use function OUGCForcePostCaptcha\Core\load_pluginlibrary;
 
@@ -45,8 +43,8 @@ function _info()
         'website' => 'https://ougc.network',
         'author' => 'Omar G.',
         'authorsite' => 'https://ougc.network',
-        'version' => '1.8.0',
-        'versioncode' => 1800,
+        'version' => '1.8.36',
+        'versioncode' => 1836,
         'compatibility' => '18*',
         'codename' => 'ougc_force_post_captcha',
         'pl' => [
@@ -107,14 +105,6 @@ function _activate()
         $plugins['forcepostcaptcha'] = $_info['versioncode'];
     }
 
-    include MYBB_ROOT . '/inc/adminfunctions_templates.php';
-
-    find_replace_templatesets(
-        'showthread_quickreply',
-        '#' . preg_quote('{$captcha}') . '#i',
-        '<!--OUGC_FORCE_POST_CAPTCHA-->{$captcha}'
-    );
-
     /*~*~* RUN UPDATES START *~*~*/
 
     /*~*~* RUN UPDATES END *~*~*/
@@ -126,14 +116,6 @@ function _activate()
 
 function _deactivate()
 {
-    include MYBB_ROOT . '/inc/adminfunctions_templates.php';
-
-    find_replace_templatesets(
-        'showthread_quickreply',
-        '#' . preg_quote('<!--OUGC_FORCE_POST_CAPTCHA-->') . '#i',
-        '',
-        0
-    );
 }
 
 function _install()

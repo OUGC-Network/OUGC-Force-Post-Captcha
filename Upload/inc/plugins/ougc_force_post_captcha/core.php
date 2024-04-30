@@ -72,7 +72,7 @@ function addHooks(string $namespace)
         $namespaceWithPrefixLength = strlen($namespaceLowercase) + 1;
 
         if (substr($callable, 0, $namespaceWithPrefixLength) == $namespaceLowercase . '\\') {
-            $hookName = substr_replace($callable, null, 0, $namespaceWithPrefixLength);
+            $hookName = substr_replace($callable, '', 0, $namespaceWithPrefixLength);
 
             $priority = substr($callable, -2);
 

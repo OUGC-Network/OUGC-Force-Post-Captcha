@@ -29,6 +29,7 @@
 namespace OUGCForcePostCaptcha\ForumHooks;
 
 use captcha;
+use dataHandler;
 use MyBB;
 
 function newthread_end()
@@ -92,7 +93,7 @@ function newreply_end()
     newthread_end();
 }
 
-function datahandler_post_validate_thread(&$dh)
+function datahandler_post_validate_thread(dataHandler &$dh): dataHandler
 {
     global $fid, $mybb, $ougc_hide_captcha, $ougc_post_captcha, $db, $json_data;
 
@@ -103,7 +104,7 @@ function datahandler_post_validate_thread(&$dh)
         !is_member($mybb->settings['ougc_force_post_captcha_groups']) ||
         !is_member($mybb->settings['ougc_force_post_captcha_forums'], ['usergroup' => $fid])
     ) {
-        return;
+        return $dh;
     }
 
     require_once MYBB_ROOT . 'inc/class_captcha.php';
@@ -147,17 +148,19 @@ function datahandler_post_validate_thread(&$dh)
         //header("Content-type: application/json; charset={$lang->settings['charset']}");
         $json_data = array('data' => $data);
     }
+
+    return $dh;
 }
 
-function datahandler_post_validate_post(&$dh)
+function datahandler_post_validate_post(dataHandler &$dh): dataHandler
 {
     global $mybb;
 
-    if ($mybb->settings['ougc_force_post_captcha_firstpost']) {
-        return;
+    if (empty($mybb->settings['ougc_force_post_captcha_firstpost'])) {
+        datahandler_post_validate_thread($dh);
     }
 
-    datahandler_post_validate_thread($dh);
+    return $dh;
 }
 
 function newthread_do_newthread_end()

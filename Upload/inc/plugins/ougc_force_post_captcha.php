@@ -43,6 +43,8 @@ define('OUGC_FORCE_POST_CAPTCHA_ROOT', MYBB_ROOT . 'inc/plugins/ougc_force_post_
 
 require_once OUGC_FORCE_POST_CAPTCHA_ROOT . '/core.php';
 
+defined('PLUGINLIBRARY') || define('PLUGINLIBRARY', MYBB_ROOT . 'inc/plugins/pluginlibrary.php');
+
 // Add our hooks
 if (defined('IN_ADMINCP')) {
     require_once OUGC_FORCE_POST_CAPTCHA_ROOT . '/admin.php';
