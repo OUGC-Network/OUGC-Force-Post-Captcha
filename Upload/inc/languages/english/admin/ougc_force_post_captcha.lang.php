@@ -33,8 +33,8 @@ $l = [
     'setting_ougc_force_post_captcha_groups_desc' => 'Select which groups are forced to fill a captcha when posting.',
     'setting_ougc_force_post_captcha_forums' => 'Affected Forums',
     'setting_ougc_force_post_captcha_forums_desc' => 'Select in which forums to force the selected groups to fill a captcha when posting.',
-    'setting_ougc_force_post_captcha_firstpost' => 'First Post Only',
-    'setting_ougc_force_post_captcha_firstpost_desc' => 'Require a captcha only when posting threads (first post).',
+    'setting_ougc_force_post_captcha_firstpost' => 'Threads Only',
+    'setting_ougc_force_post_captcha_firstpost_desc' => 'Require a captcha only when posting threads. Disable to require a captcha for all posts.',
     'setting_ougc_force_post_captcha_contact' => 'Contact Page',
     'setting_ougc_force_post_captcha_contact_desc' => 'Require a captcha when using the contact page.',
 
